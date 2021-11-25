@@ -1,3 +1,6 @@
+import memory_profiler
+
+
 class Optimised:
     def __init__(self):
         self.delta = 30
@@ -118,6 +121,9 @@ class Optimised:
                                    dp[(i - 1) % 2][j - 1] + self.mismatch_cost[self.chars[X[i - 1]]][self.chars[Y[j - 1]]])
 
         return dp[(m - 1) % 2]
+
+
+
 
     def divide_conquer_alignment(self, X, Y):
 

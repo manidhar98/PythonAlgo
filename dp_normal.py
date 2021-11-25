@@ -1,6 +1,8 @@
 import time
 import resource
 
+import memory_profiler
+
 base_string = "ACGT"
 
 
@@ -15,6 +17,7 @@ class normal:
         # self.get_minimum_penalty(x, y, mismatch_penalty_matrix, gap_penalty_value)
         # print("\n\nTime taken by get_minimum_penalty method: ", time.process_time() - start)
         # print("Memory used by the program: ", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+
 
     def get_minimum_penalty(self, str1, str2, mismatch_penalty, gap_penalty):
         str1_length = len(str1)

@@ -5,6 +5,7 @@
 import re
 import resource
 import time
+import tracemalloc
 
 import memory_profiler
 import dp_normal
@@ -64,23 +65,26 @@ if __name__ == '__main__':
     mismatch_penalty_matrix = [[0, 110, 48, 94], [110, 0, 118, 48], [48, 118, 0, 110], [94, 48, 110, 0]]
     gap_penalty_value = 30
 
-    start = time.process_time()
 
     x = final[0]
     y = final[1]
-
+    tracemalloc.start()
+    start = time.process_time()
     n.get_minimum_penalty(x, y, mismatch_penalty_matrix, gap_penalty_value)
     print("\n\nTime taken by get_minimum_penalty method: ", time.process_time() - start)
-    print("Memory used by the program: ", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
-
-    print('--------')
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Current memory usage is {current / 10 ** 6}MB; Peak was {peak / 10 ** 6}MB")
+    tracemalloc.stop()
 
     part_bO = partb.Optimised()
-    start = time.process_time()
-    part_bO.divide_conquer_alignment(x, y)
-    print('min_cost: ', part_bO.min_cost)
-    print("seq1: ", part_bO.final_seq_x)
-    print("seq2: ", part_bO.final_seq_y)
-    print("\nTime taken by get_minimum_penalty method: ", time.process_time() - start)
-    print("Memory used by the program: ", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+    # tracemalloc.start()
+    # start = time.process_time()
+    # part_bO.divide_conquer_alignment(x, y)
+    # print('min_cost: ', part_bO.min_cost)
+    # print("seq1: ", part_bO.final_seq_x)
+    # print("seq2: ", part_bO.final_seq_y)
+    # print("\nTime taken by get_minimum_penalty method: ", time.process_time() - start)
+    # current, peak = tracemalloc.get_traced_memory()
+    # print(f"Current memory usage is {current / 10 ** 6}MB; Peak was {peak / 10 ** 6}MB")
+    # tracemalloc.stop()
 
